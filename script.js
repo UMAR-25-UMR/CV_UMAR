@@ -1,6 +1,85 @@
-document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             // Set current year in footer
             document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Initialize particles.js
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#3498db"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": false,
+                        "anim": {
+                            "enable": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#3498db",
+                        "opacity": 0.1,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.3
+                            }
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
             
             // Theme toggle functionality
             const themeBtn = document.getElementById('themeBtn');
@@ -80,4 +159,25 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Check on scroll
             window.addEventListener('scroll', animateSections);
+            
+            // Add hover effect to experience items
+            const expItems = document.querySelectorAll('.experience-item, .education-item');
+            expItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'translateY(-5px)';
+                    item.style.boxShadow = '0 15px 30px rgba(0,0,0,0.12)';
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'translateY(0)';
+                    item.style.boxShadow = 'none';
+                });
+            });
+            
+            // Add skill progress animation
+            const skillLevels = document.querySelectorAll('.progress-fill');
+            skillLevels.forEach(level => {
+                const width = level.getAttribute('data-level');
+                level.style.width = width;
+            });
         });
